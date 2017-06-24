@@ -1,0 +1,15 @@
+.*.swp
+*.dist
+!/data/locations/*.dist
+/Cargo.lock
+tags
+/kodama-bin/**/target
+/kodama-bin/**/*.csv
+/kodama-bin/**/*.stat
+/target
+/py/*.csv
+/py/*.stat
+perf.data
+perf.data.old
+/kodama-capi/Cargo.lock
+/kodama-capi/target

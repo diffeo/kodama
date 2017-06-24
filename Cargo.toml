@@ -1,14 +1,38 @@
 [package]
 publish = false
-name = "aggfeo"
+name = "kodama"
 version = "0.0.1"  #:version
 authors = ["Diffeo <support@diffeo.com>"]
 description = """
 Agglomerative hierarchical clustering.
 """
-documentation = "https://github.com/diffeo/aggfeo"
-homepage = "https://github.com/diffeo/aggfeo"
-repository = "https://github.com/diffeo/aggfeo"
+documentation = "https://github.com/diffeo/kodama"
+homepage = "https://github.com/diffeo/kodama"
+repository = "https://github.com/diffeo/kodama"
 readme = "README.md"
 keywords = ["agglomerative", "hierarchical", "cluster", "fastcluster", "linkage"]
-license = "Proprietary"
+license = "MIT"
+
+[lib]
+name = "kodama"
+
+[dependencies]
+# For writing generic floating point code.
+num-traits = "0.1"
+
+[dev-dependencies]
+# For reading benchmark data.
+byteorder = "1.1"
+# For simple global initialization.
+lazy_static = "0.2.8"
+# For property based testing.
+quickcheck = { version = "0.4", default-features = false }
+
+[profile.release]
+debug = true
+
+[profile.bench]
+debug = true
+
+[profile.test]
+opt-level = 3

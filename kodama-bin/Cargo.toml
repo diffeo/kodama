@@ -1,0 +1,36 @@
+[package]
+publish = false
+name = "kodama-bin"
+version = "0.0.1"  #:version
+authors = ["Diffeo <support@diffeo.com>"]
+description = """
+Agglomerative hierarchical clustering tools.
+"""
+documentation = "https://github.com/diffeo/kodama"
+homepage = "https://github.com/diffeo/kodama"
+repository = "https://github.com/diffeo/kodama"
+readme = "README.md"
+keywords = ["agglomerative", "hierarchical", "cluster", "fastcluster", "linkage"]
+license = "MIT"
+
+[[bin]]
+name = "locations"
+path = "src/locations.rs"
+
+[dependencies]
+# For agglomerative hierarchical clustering.
+kodama = { version = "0.0.1", path = ".." }
+# For reading/writing arrays.
+byteorder = "1.1.0"
+# For argv parsing.
+clap = "2"
+# For CSV parsing.
+csv = "1.0.0-beta.4"
+# For data parallelism.
+rayon = "0.8"
+# For automatic deserialization into structs when parsing CSV.
+serde = "1"
+serde_derive = "1"
+
+[profile.release]
+debug = true
