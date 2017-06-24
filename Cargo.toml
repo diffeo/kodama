@@ -1,0 +1,14 @@
+[package]
+publish = false
+name = "aggfeo"
+version = "0.0.1"  #:version
+authors = ["Diffeo <support@diffeo.com>"]
+description = """
+Agglomerative hierarchical clustering.
+"""
+documentation = "https://github.com/diffeo/aggfeo"
+homepage = "https://github.com/diffeo/aggfeo"
+repository = "https://github.com/diffeo/aggfeo"
+readme = "README.md"
+keywords = ["agglomerative", "hierarchical", "cluster", "fastcluster", "linkage"]
+license = "Proprietary"
