@@ -3,6 +3,9 @@ kodama
 This crate provides a fast implementation of agglomerative
 [hierarchical clustering](https://en.wikipedia.org/wiki/Hierarchical_clustering).
 
+[![Linux build status](https://travis-ci.org/diffeo/kodama.svg?branch=master)](https://travis-ci.org/diffeo/kodama)
+[![](https://img.shields.io/crates/v/kodama.svg)](https://crates.io/crates/kodama)
+
 This library is released under the MIT license.
 
 The ideas and implementation in this crate are heavily based on the work of
