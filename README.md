@@ -50,4 +50,5 @@ which provides a C interface to hierarchical clustering.
 
 This repository also includes
 [Go FFI bindings via cgo](https://github.com/diffeo/kodama/tree/master/go-kodama)
-to the aforementioned C API.
+to the aforementioned C API. Documentation for the Go library can be found at
+[godoc.org/github.com/diffeo/kodama/go-kodama](http://godoc.org/github.com/diffeo/kodama/go-kodama).
