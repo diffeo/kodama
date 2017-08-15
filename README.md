@@ -20,6 +20,9 @@ provided by MATLAB and
 The runtime performance of this library is on par with Müllner's `fastcluster`
 implementation.
 
+For a more detailed example of how to use hierarchical clustering, see the
+[example in the API documentation](https://docs.rs/kodama/0.1.0/kodama/#example).
+
 ### Documentation
 
 https://docs.rs/kodama
