@@ -1,7 +1,6 @@
 [package]
-publish = false
 name = "kodama-capi"
-version = "0.0.1"  #:version
+version = "0.1.0"  #:version
 authors = ["Diffeo <support@diffeo.com>"]
 description = """
 A C API for the kodama agglomerative hierarchical clustering library.
@@ -18,5 +17,5 @@ name = "kodama"
 crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
-kodama = { version = "0.0.1", path = ".." }
+kodama = { version = "0.1.0", path = ".." }
 libc = "0.2"

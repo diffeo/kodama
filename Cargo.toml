@@ -1,7 +1,6 @@
 [package]
-publish = false
 name = "kodama"
-version = "0.0.1"  #:version
+version = "0.1.0"  #:version
 authors = ["Diffeo <support@diffeo.com>"]
 description = """
 Agglomerative hierarchical clustering.
@@ -12,6 +11,7 @@ repository = "https://github.com/diffeo/kodama"
 readme = "README.md"
 keywords = ["agglomerative", "hierarchical", "cluster", "fastcluster", "linkage"]
 license = "MIT"
+exclude = ["data/locations/*.dist"]
 
 [lib]
 name = "kodama"

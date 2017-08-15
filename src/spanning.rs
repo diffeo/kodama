@@ -48,7 +48,7 @@ pub fn mst_with<T: Float>(
         let mut min_dist = state.min_dists[min_obs];
 
         for x in state.active.range(..cluster) {
-            let mut slot = &mut state.min_dists[x];
+            let slot = &mut state.min_dists[x];
             method::single(dis[[x, cluster]], slot);
             if *slot < min_dist {
                 min_obs = x;
@@ -56,7 +56,7 @@ pub fn mst_with<T: Float>(
             }
         }
         for x in state.active.range(cluster..) {
-            let mut slot = &mut state.min_dists[x];
+            let slot = &mut state.min_dists[x];
             method::single(dis[[cluster, x]], slot);
             if *slot < min_dist {
                 min_obs = x;
