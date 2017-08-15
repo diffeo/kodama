@@ -41,3 +41,13 @@ and this to your crate root:
 ```rust
 extern crate kodama;
 ```
+
+### C API and Go bindings
+
+This repository includes
+[`kodama-capi`](https://github.com/diffeo/kodama/tree/master/kodama-capi),
+which provides a C interface to hierarchical clustering.
+
+This repository also includes
+[Go FFI bindings via cgo](https://github.com/diffeo/kodama/tree/master/go-kodama)
+to the aforementioned C API.
