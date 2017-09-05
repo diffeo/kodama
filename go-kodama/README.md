@@ -86,7 +86,7 @@ And now we add musl and compile (note that different value of `CGO_LDFLAGS`!):
 ```
 $ rustup target add x86_64-unknown-linux-musl
 $ cargo build --release --manifest-path ../kodama-capi/Cargo.toml --target x86_64-unknown-linux-musl
-$ export CGO_LDFLAGS="-L../kodama-capi/target/x86-64-unknown-linux-musl/release"
+$ export CGO_LDFLAGS="-L../kodama-capi/target/x86_64-unknown-linux-musl/release"
 ```
 
 Now `go test` will work, and re-compiling `go-kodama-example` will also work,
