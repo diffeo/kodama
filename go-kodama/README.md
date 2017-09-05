@@ -61,7 +61,7 @@ Note that, at least on Linux, the above setup will dynamically link the Rust
 kodama library into the Go executable:
 
 ```
-$ ldd /tmp/go/bin/go-kodama-example
+$ ldd $GOPATH/bin/go-kodama-example
 ...
         libkodama.so => ../kodama-capi/target/release/libkodama.so (0x00007f464cde6000)
 ...
