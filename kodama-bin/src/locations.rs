@@ -189,9 +189,7 @@ fn vec_f64_from_file<T: ByteOrder>(fpath: &Path) -> io::Result<Vec<f64>> {
     }
 
     let mut numbers = vec![0.0; len / 8];
-    unsafe {
-        file.read_f64_into_unchecked::<T>(&mut numbers)?;
-    }
+    file.read_f64_into::<T>(&mut numbers)?;
     Ok(numbers)
 }
 

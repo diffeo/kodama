@@ -22,7 +22,7 @@ num-traits = "0.1"
 
 [dev-dependencies]
 # For reading benchmark data.
-byteorder = "1.1"
+byteorder = "1.2.1"
 # For simple global initialization.
 lazy_static = "0.2.8"
 # For property based testing.

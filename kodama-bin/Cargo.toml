@@ -20,11 +20,11 @@ path = "src/locations.rs"
 # For agglomerative hierarchical clustering.
 kodama = { version = "0.1.0", path = ".." }
 # For reading/writing arrays.
-byteorder = "1.1.0"
+byteorder = "1.2.1"
 # For argv parsing.
 clap = "2"
 # For CSV parsing.
-csv = "1.0.0-beta.4"
+csv = "1.0.0-beta.5"
 # For data parallelism.
 rayon = "0.8"
 # For automatic deserialization into structs when parsing CSV.
