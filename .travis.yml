@@ -14,5 +14,5 @@ script:
     fi
   # Only apply minimum Rust version constraint to kodama and kodama-capi.
   - if [ "$TRAVIS_RUST_VERSION" != "1.19.0" ]; then
-      cargo build --verbose --manifest-path kodama-bin/Cargo.toml
+      cargo build --verbose --manifest-path kodama-bin/Cargo.toml;
     fi
