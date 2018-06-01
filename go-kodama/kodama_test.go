@@ -88,6 +88,19 @@ func TestLinkage64Empty(t *testing.T) {
 	}
 }
 
+func TestLinkage64EmptySteps(t *testing.T) {
+	dis := []float64{}
+	dend := Linkage64(dis, 0, MethodAverage)
+	if steps := dend.Steps(); len(steps) != 0 {
+		t.Fatalf("expected zero steps, but got %d steps\n", len(steps))
+	}
+
+	dend = Linkage64(dis, 1, MethodAverage)
+	if steps := dend.Steps(); len(steps) != 0 {
+		t.Fatalf("expected zero steps, but got %d steps\n", len(steps))
+	}
+}
+
 func TestLinkage32Empty(t *testing.T) {
 	// nil slice
 	var dis []float32
@@ -105,6 +118,19 @@ func TestLinkage32Empty(t *testing.T) {
 	// (1 observation has an empty dissimilarity matrix)
 	if dend := Linkage32(dis, 1, MethodAverage); dend.Len() != 0 {
 		t.Fatalf("expected empty dendrogram, but got one of length %d\n", dend.Len())
+	}
+}
+
+func TestLinkage32EmptySteps(t *testing.T) {
+	dis := []float32{}
+	dend := Linkage32(dis, 0, MethodAverage)
+	if steps := dend.Steps(); len(steps) != 0 {
+		t.Fatalf("expected zero steps, but got %d steps\n", len(steps))
+	}
+
+	dend = Linkage32(dis, 1, MethodAverage)
+	if steps := dend.Steps(); len(steps) != 0 {
+		t.Fatalf("expected zero steps, but got %d steps\n", len(steps))
 	}
 }
 

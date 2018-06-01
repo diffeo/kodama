@@ -108,6 +108,14 @@ func (dend *Dendrogram) Observations() int {
 // Steps returns a slice of steps that make up the given dendrogram.
 func (dend *Dendrogram) Steps() []Step {
 	len := dend.Len()
+	if len == 0 {
+		// Why do we special case the empty dendrogram? Well, it turns
+		// out that for an empty dendrogram, the pointer returned by
+		// Rust doesn't actually point to valid memory, and Go does not
+		// like this one bit. So avoid asking for the steps when we
+		// know they are empty.
+		return []Step{}
+	}
 	csteps := C.kodama_dendrogram_steps(dend.p)
 	gosteps := (*[math.MaxInt32]C.kodama_step)(unsafe.Pointer(csteps))[:len:len]
 
