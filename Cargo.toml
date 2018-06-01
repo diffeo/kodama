@@ -18,15 +18,15 @@ name = "kodama"
 
 [dependencies]
 # For writing generic floating point code.
-num-traits = "0.1"
+num-traits = "0.2"
 
 [dev-dependencies]
 # For reading benchmark data.
 byteorder = "1.2.1"
 # For simple global initialization.
-lazy_static = "0.2.8"
+lazy_static = "1"
 # For property based testing.
-quickcheck = { version = "0.4", default-features = false }
+quickcheck = { version = "0.6", default-features = false }
 
 [profile.release]
 debug = true
