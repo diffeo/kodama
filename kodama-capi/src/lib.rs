@@ -10,18 +10,20 @@ use libc::{c_double, c_float, size_t};
 mod macros;
 
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub enum kodama_method {
     Single, Complete, Average, Weighted, Ward, Centroid, Median,
 }
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct kodama_dendrogram {
     steps: Vec<kodama_step>,
     observations: size_t,
 }
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct kodama_step {
     pub cluster1: size_t,
     pub cluster2: size_t,
