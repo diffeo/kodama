@@ -1,6 +1,6 @@
 language: rust
 rust:
-  - 1.19.0
+  - 1.24.0
   - stable
   - beta
   - nightly
@@ -16,3 +16,7 @@ script:
   - if [ "$TRAVIS_RUST_VERSION" != "1.19.0" ]; then
       cargo build --verbose --manifest-path kodama-bin/Cargo.toml;
     fi
+branches:
+  only:
+    # Pushes and PR to the master branch
+    - master
