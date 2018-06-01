@@ -68,6 +68,46 @@ func TestLinkage32(t *testing.T) {
 	}
 }
 
+func TestLinkage64Empty(t *testing.T) {
+	// nil slice
+	var dis []float64
+	if dend := Linkage64(dis, 0, MethodAverage); dend.Len() != 0 {
+		t.Fatalf("expected empty dendrogram, but got one of length %d\n", dend.Len())
+	}
+
+	// empty slice
+	dis = []float64{}
+	if dend := Linkage64(dis, 0, MethodAverage); dend.Len() != 0 {
+		t.Fatalf("expected empty dendrogram, but got one of length %d\n", dend.Len())
+	}
+
+	// empty slice, but 1 observation
+	// (1 observation has an empty dissimilarity matrix)
+	if dend := Linkage64(dis, 1, MethodAverage); dend.Len() != 0 {
+		t.Fatalf("expected empty dendrogram, but got one of length %d\n", dend.Len())
+	}
+}
+
+func TestLinkage32Empty(t *testing.T) {
+	// nil slice
+	var dis []float32
+	if dend := Linkage32(dis, 0, MethodAverage); dend.Len() != 0 {
+		t.Fatalf("expected empty dendrogram, but got one of length %d\n", dend.Len())
+	}
+
+	// empty slice
+	dis = []float32{}
+	if dend := Linkage32(dis, 0, MethodAverage); dend.Len() != 0 {
+		t.Fatalf("expected empty dendrogram, but got one of length %d\n", dend.Len())
+	}
+
+	// empty slice, but 1 observation
+	// (1 observation has an empty dissimilarity matrix)
+	if dend := Linkage32(dis, 1, MethodAverage); dend.Len() != 0 {
+		t.Fatalf("expected empty dendrogram, but got one of length %d\n", dend.Len())
+	}
+}
+
 func assertStepApproxEq(t *testing.T, stepIndex int, got, expected Step) {
 	eps := 0.000001
 	if math.Abs(got.Dissimilarity-expected.Dissimilarity) > eps {

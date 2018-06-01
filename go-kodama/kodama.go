@@ -22,6 +22,7 @@ import "C"
 import (
 	"fmt"
 	"math"
+	"reflect"
 	"runtime"
 	"unsafe"
 )
@@ -176,7 +177,15 @@ func Linkage64(
 			expectedLen, len(condensedDissimilarityMatrix)))
 	}
 
-	cmat := (*C.double)(unsafe.Pointer(&condensedDissimilarityMatrix[0]))
+	// Since we are reading this matrix (which is in Go memory) from
+	// Rust, and since we are explicitly allowing zero-length slices, we
+	// must ensure that we pass a non-null pointer to Rust. (If the Rust
+	// bindings allowed a null pointer, then we'd wind up with UB.)
+	if condensedDissimilarityMatrix == nil {
+		condensedDissimilarityMatrix = []float64{}
+	}
+	header := (*reflect.SliceHeader)(unsafe.Pointer(&condensedDissimilarityMatrix))
+	cmat := (*C.double)(unsafe.Pointer(header.Data))
 	return newDendrogram(C.kodama_linkage_double(cmat, C.size_t(observations), method.enum()))
 }
 
@@ -216,6 +225,14 @@ func Linkage32(
 			expectedLen, len(condensedDissimilarityMatrix)))
 	}
 
-	cmat := (*C.float)(unsafe.Pointer(&condensedDissimilarityMatrix[0]))
+	// Since we are reading this matrix (which is in Go memory) from
+	// Rust, and since we are explicitly allowing zero-length slices, we
+	// must ensure that we pass a non-null pointer to Rust. (If the Rust
+	// bindings allowed a null pointer, then we'd wind up with UB.)
+	if condensedDissimilarityMatrix == nil {
+		condensedDissimilarityMatrix = []float32{}
+	}
+	header := (*reflect.SliceHeader)(unsafe.Pointer(&condensedDissimilarityMatrix))
+	cmat := (*C.float)(unsafe.Pointer(header.Data))
 	return newDendrogram(C.kodama_linkage_float(cmat, C.size_t(observations), method.enum()))
 }
