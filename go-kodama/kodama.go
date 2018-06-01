@@ -35,6 +35,7 @@ import (
 // cluster is computed using one of the variants of this type.
 type Method int
 
+// The available methods for computing linkage.
 const (
 	MethodSingle Method = iota
 	MethodComplete
@@ -179,7 +180,7 @@ func Linkage64(
 	return newDendrogram(C.kodama_linkage_double(cmat, C.size_t(observations), method.enum()))
 }
 
-// Linkage64 returns a hierarchical clustering of observations given their
+// Linkage32 returns a hierarchical clustering of observations given their
 // pairwise dissimilarities as single-precision floating point numbers.
 //
 // The pairwise dissimilarities must be provided as a *condensed pairwise
