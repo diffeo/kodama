@@ -27,7 +27,7 @@ impl<'a, T> CondensedMatrix<'a, T> {
     /// `data` should be the contiguous condensed pairwise matrix, where each
     /// row of the upper triangle in the matrix are laid out contiguously.
     ///
-    /// `observations` should be the number of observations reflected by the
+    /// `observations` should be the number of observations that make up the
     /// matrix.
     ///
     /// # Panics
@@ -39,6 +39,10 @@ impl<'a, T> CondensedMatrix<'a, T> {
     /// ```text
     /// data.len() == (observations * (observations - 1)) / 2
     /// ```
+    ///
+    /// As a special case, if `observations` is `<= 1`, then it is treated as
+    /// if it is equivalent to `0`. In this case, the matrix provided must be
+    /// empty.
     pub fn new(
         data: &'a mut [T],
         observations: usize,
@@ -47,12 +51,13 @@ impl<'a, T> CondensedMatrix<'a, T> {
             assert!(observations <= 1);
             CondensedMatrix { data: data, observations: 0 }
         } else {
+            assert!(observations >= 2);
             assert_eq!((observations * (observations - 1)) / 2, data.len());
             CondensedMatrix { data: data, observations: observations }
         }
     }
 
-    /// Return the number of observations reflexed by this matrix.
+    /// Return the number of observations that make up this matrix.
     pub fn observations(&self) -> usize {
         self.observations
     }
