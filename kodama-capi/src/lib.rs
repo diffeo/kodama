@@ -49,6 +49,7 @@ ffi_fn! {
         observations: size_t,
         method: kodama_method,
     ) -> *mut kodama_dendrogram {
+        assert!(!dis.is_null());
         let dis_len = (observations * (observations - 1)) / 2;
         let dis = unsafe { slice::from_raw_parts_mut(dis, dis_len) };
         let dend = linkage(dis, observations, method.into_method());
@@ -75,6 +76,7 @@ ffi_fn! {
         observations: size_t,
         method: kodama_method,
     ) -> *mut kodama_dendrogram {
+        assert!(!dis.is_null());
         let dis_len = (observations * (observations - 1)) / 2;
         let dis = unsafe { slice::from_raw_parts_mut(dis, dis_len) };
         let dend = linkage(dis, observations, method.into_method());
