@@ -1,6 +1,7 @@
 use std::collections::BTreeSet;
 
 use quickcheck::{Arbitrary, Gen};
+use rand::Rng;
 
 /// A reflexive pairwise dissimilarity matrix where every dissimilarity is
 /// unique.

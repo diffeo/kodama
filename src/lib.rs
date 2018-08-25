@@ -233,6 +233,8 @@ extern crate num_traits;
 #[cfg(test)]
 #[macro_use]
 extern crate quickcheck;
+#[cfg(test)]
+extern crate rand;
 
 use std::error;
 use std::fmt;
