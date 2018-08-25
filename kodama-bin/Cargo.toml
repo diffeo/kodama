@@ -18,11 +18,11 @@ path = "src/locations.rs"
 
 [dependencies]
 # For agglomerative hierarchical clustering.
-kodama = { version = "0.2.1", path = ".." }
+kodama = { version = "0.2.2", path = ".." }
 # For reading/writing arrays.
-byteorder = "1.2.1"
+byteorder = "1.2.6"
 # For argv parsing.
-clap = "2"
+clap = "2.32.0"
 # For CSV parsing.
 csv = "1"
 # For data parallelism.

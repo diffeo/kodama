@@ -4,18 +4,7 @@ rust:
   - stable
   - beta
   - nightly
-script:
-  - cargo build --verbose
-  - cargo build --verbose --manifest-path kodama-capi/Cargo.toml
-  - cargo test --verbose
-  - cargo doc
-  - if [ "$TRAVIS_RUST_VERSION" = "nightly" ]; then
-      cargo bench --verbose --no-run;
-    fi
-  # Only apply minimum Rust version constraint to kodama and kodama-capi.
-  - if [ "$TRAVIS_RUST_VERSION" != "1.19.0" ]; then
-      cargo build --verbose --manifest-path kodama-bin/Cargo.toml;
-    fi
+script: ci/script.sh
 branches:
   only:
     # Pushes and PR to the master branch
