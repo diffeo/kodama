@@ -13,6 +13,9 @@ keywords = ["agglomerative", "hierarchical", "cluster", "fastcluster", "linkage"
 license = "MIT"
 exclude = ["data/locations/*.dist"]
 
+[workspace]
+members = ["kodama-bin", "kodama-capi"]
+
 [lib]
 name = "kodama"
 
