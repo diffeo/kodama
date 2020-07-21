@@ -11,6 +11,7 @@ repository = "https://github.com/diffeo/kodama"
 readme = "README.md"
 keywords = ["agglomerative", "hierarchical", "cluster", "fastcluster", "linkage"]
 license = "MIT"
+edition = "2018"
 
 [lib]
 name = "kodama"
