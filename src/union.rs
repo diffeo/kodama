@@ -1,7 +1,7 @@
 use std::usize;
 
-use dendrogram::Dendrogram;
-use Method;
+use crate::dendrogram::Dendrogram;
+use crate::Method;
 
 /// A specialized implementation of union-find for linkage.
 ///
@@ -145,8 +145,8 @@ impl LinkageUnionFind {
 #[cfg(test)]
 mod tests {
     use super::LinkageUnionFind;
-    use dendrogram::{Dendrogram, Step};
-    use Method;
+    use crate::dendrogram::{Dendrogram, Step};
+    use crate::Method;
 
     #[test]
     fn trivial_find() {

@@ -1,10 +1,10 @@
-extern crate byteorder;
+
 #[macro_use]
 extern crate clap;
-extern crate csv;
-extern crate kodama;
-extern crate rayon;
-extern crate serde;
+use csv;
+use kodama;
+
+
 #[macro_use]
 extern crate serde_derive;
 
@@ -98,7 +98,7 @@ where
 /// Run the program using the results of argv parsing.
 ///
 /// If there was a problem, return an error.
-fn run(matches: clap::ArgMatches) -> io::Result<()> {
+fn run(matches: clap::ArgMatches<'_>) -> io::Result<()> {
     // Get the user supplied method. Default to single linkage.
     let method: Method = matches
         .value_of("method")

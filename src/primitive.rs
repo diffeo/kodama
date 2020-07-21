@@ -1,10 +1,10 @@
 use num_traits::Float;
 
-use active::Active;
-use condensed::CondensedMatrix;
-use dendrogram::Dendrogram;
-use method;
-use {LinkageState, Method};
+use crate::active::Active;
+use crate::condensed::CondensedMatrix;
+use crate::dendrogram::Dendrogram;
+use crate::method;
+use crate::{LinkageState, Method};
 
 /// Perform hierarchical clustering using the "primitive" algorithm as
 /// described in Müllner's paper.
@@ -192,7 +192,7 @@ pub fn primitive_with<T: Float>(
 
 #[inline(never)]
 fn argmin<T: Float>(
-    matrix: &CondensedMatrix<T>,
+    matrix: &CondensedMatrix<'_, T>,
     active: &Active,
 ) -> Option<(usize, usize, T)> {
     // A natural representation for min is Option<_>, but this requires
@@ -220,8 +220,8 @@ fn argmin<T: Float>(
 #[cfg(test)]
 mod tests {
     use super::argmin;
-    use active::Active;
-    use condensed::CondensedMatrix;
+    use crate::active::Active;
+    use crate::condensed::CondensedMatrix;
 
     #[test]
     fn argmin_zero() {

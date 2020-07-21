@@ -75,7 +75,7 @@ impl Active {
     ///
     /// The iterator runs in time proportional to the number of elements in
     /// the list.
-    pub fn iter(&self) -> ActiveIter {
+    pub fn iter(&self) -> ActiveIter<'_> {
         ActiveIter(ActiveRange {
             active: self,
             cur: self.start,
@@ -90,7 +90,7 @@ impl Active {
     /// elements in the list in the given range. Otherwise, no such guarantee
     /// is provided, but has an upper bound on the total number of elements
     /// that have ever been in the list.
-    pub fn range<R: RangeBound<usize>>(&self, range: R) -> ActiveRange {
+    pub fn range<R: RangeBound<usize>>(&self, range: R) -> ActiveRange<'_> {
         let mut start = match range.start() {
             Bound::Unbounded => self.start,
             Bound::Included(&i) => i,

@@ -16,7 +16,7 @@ use std::ops::{Index, IndexMut};
 /// reflexive dissimilarity matrix. Therefore, the row index must always be
 /// less than the column index. Violating this results in a panic.
 #[derive(Debug)]
-pub struct CondensedMatrix<'a, T: 'a> {
+pub struct CondensedMatrix<'a, T> {
     data: &'a mut [T],
     observations: usize,
 }
