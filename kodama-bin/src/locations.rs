@@ -1,12 +1,6 @@
-
-#[macro_use]
-extern crate clap;
 use csv;
 use kodama;
-
-
-#[macro_use]
-extern crate serde_derive;
+use serde::{Deserialize, Serialize};
 
 use std::fs::File;
 use std::io::{self, Write};
@@ -147,8 +141,8 @@ fn main() {
 
     // Set up the argv parser.
     let app = App::new("locations")
-        .author(crate_authors!())
-        .version(crate_version!())
+        .author(clap::crate_authors!())
+        .version(clap::crate_version!())
         .max_term_width(100)
         .setting(AppSettings::UnifiedHelpMessage)
         .arg(Arg::with_name("location-data").required(true).help(

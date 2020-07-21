@@ -229,12 +229,6 @@ Obviously, this is not ideal and there is a lot of room for improvement!
 
 #![deny(missing_docs)]
 
-
-#[cfg(test)]
-#[macro_use]
-extern crate quickcheck;
-
-
 use std::error;
 use std::fmt;
 use std::io;
