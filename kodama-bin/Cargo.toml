@@ -30,6 +30,3 @@ rayon = "1"
 # For automatic deserialization into structs when parsing CSV.
 serde = "1"
 serde_derive = "1"
-
-[profile.release]
-debug = true
