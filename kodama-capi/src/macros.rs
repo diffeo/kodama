@@ -5,9 +5,9 @@ macro_rules! ffi_fn {
     (fn $name:ident($($arg:ident: $arg_ty:ty),*) -> $ret:ty $body:block) => {
         #[no_mangle]
         pub extern fn $name($($arg: $arg_ty),*) -> $ret {
-            use ::std::io::{self, Write};
-            use ::std::panic::{self, AssertUnwindSafe};
-            use ::libc::abort;
+            use std::io::{self, Write};
+            use std::panic::{self, AssertUnwindSafe};
+
             match panic::catch_unwind(AssertUnwindSafe(move || $body)) {
                 Ok(v) => v,
                 Err(err) => {
@@ -21,8 +21,9 @@ macro_rules! ffi_fn {
                     let _ = writeln!(
                         &mut io::stderr(),
                         "panic unwind caught, aborting: {:?}",
-                        msg);
-                    unsafe { abort() }
+                        msg,
+                    );
+                    unsafe { libc::abort() }
                 }
             }
         }

@@ -364,7 +364,7 @@ mod tests {
     use crate::test::DistinctMatrix;
     use crate::{nnchain, primitive, Method, MethodChain};
 
-    quickcheck! {
+    quickcheck::quickcheck! {
         fn prop_generic_single_primitive(mat: DistinctMatrix) -> bool {
             let dend_prim = primitive(
                 &mut mat.matrix(), mat.len(), Method::Single);
