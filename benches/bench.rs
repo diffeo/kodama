@@ -1,6 +1,5 @@
 #![feature(test)]
 
-
 use kodama;
 #[macro_use]
 extern crate lazy_static;
@@ -16,9 +15,7 @@ lazy_static! {
             include_bytes!("../data/locations/ma-bench-small.dist");
 
         let mut dists = vec![0.0; DIST_BYTES.len() / 8];
-        unsafe {
-            LittleEndian::read_f64_into_unchecked(DIST_BYTES, &mut dists);
-        }
+        LittleEndian::read_f64_into(DIST_BYTES, &mut dists);
         (dists, 200)
     };
     static ref MA_CONDENSED_DISTS_LARGE: (Vec<f64>, usize) = {
@@ -26,9 +23,7 @@ lazy_static! {
             include_bytes!("../data/locations/ma-bench-large.dist");
 
         let mut dists = vec![0.0; DIST_BYTES.len() / 8];
-        unsafe {
-            LittleEndian::read_f64_into_unchecked(DIST_BYTES, &mut dists);
-        }
+        LittleEndian::read_f64_into(DIST_BYTES, &mut dists);
         (dists, 2000)
     };
 }
