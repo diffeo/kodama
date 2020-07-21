@@ -161,17 +161,21 @@ impl<T: Float> Dendrogram<T> {
                 return false;
             }
         }
-       true
+        true
     }
 }
 
 impl<T> ops::Index<usize> for Dendrogram<T> {
     type Output = Step<T>;
-    fn index(&self, i: usize) -> &Step<T> { &self.steps[i] }
+    fn index(&self, i: usize) -> &Step<T> {
+        &self.steps[i]
+    }
 }
 
 impl<T> ops::IndexMut<usize> for Dendrogram<T> {
-    fn index_mut(&mut self, i: usize) -> &mut Step<T> { &mut self.steps[i] }
+    fn index_mut(&mut self, i: usize) -> &mut Step<T> {
+        &mut self.steps[i]
+    }
 }
 
 impl<T> Step<T> {

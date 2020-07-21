@@ -39,9 +39,7 @@ pub fn ward<T: Float>(
     let size_b = T::from(size_b).unwrap();
     let size_x = T::from(size_x).unwrap();
 
-    let numerator =
-        ((size_x + size_a) * a)
-        + ((size_x + size_b) * *b)
+    let numerator = ((size_x + size_a) * a) + ((size_x + size_b) * *b)
         - (size_x * merged_dist);
     let denom = size_a + size_b + size_x;
     *b = numerator / denom;
@@ -59,17 +57,12 @@ pub fn centroid<T: Float>(
     let size_b = T::from(size_b).unwrap();
     let size_ab = size_a + size_b;
 
-    *b =
-        (((size_a * a) + (size_b * *b)) / size_ab)
+    *b = (((size_a * a) + (size_b * *b)) / size_ab)
         - ((size_a * size_b * merged_dist) / (size_ab * size_ab));
 }
 
 #[inline]
-pub fn median<T: Float>(
-    a: T,
-    b: &mut T,
-    merged_dist: T,
-) {
+pub fn median<T: Float>(a: T, b: &mut T, merged_dist: T) {
     let half = T::from(0.5).unwrap();
     let quarter = T::from(0.25).unwrap();
 

@@ -1,5 +1,5 @@
 use std::collections::Bound;
-use std::ops::{Range, RangeFull, RangeTo, RangeFrom};
+use std::ops::{Range, RangeFrom, RangeFull, RangeTo};
 
 /// Active is a list of contiguous unsigned integers that supports efficient
 /// removal and iteration that is proportional to the number of elements in the
@@ -19,11 +19,7 @@ pub struct Active {
 impl Active {
     /// Create a new empty active list.
     pub fn new() -> Active {
-        Active {
-            start: 0,
-            prev: vec![],
-            next: vec![],
-        }
+        Active { start: 0, prev: vec![], next: vec![] }
     }
 
     /// Create a new active list with elements `0` through `len-1`, inclusive.
@@ -67,8 +63,8 @@ impl Active {
             self.start = self.next[i];
         } else {
             assert!(i > self.start);
-            self.prev[self.next[i]-1] = self.prev[i-1];
-            self.next[self.prev[i-1]] = self.next[i];
+            self.prev[self.next[i] - 1] = self.prev[i - 1];
+            self.next[self.prev[i - 1]] = self.next[i];
         }
         // The first item can never be the next item, so we
         // reuse it as a sentinel.
@@ -117,18 +113,16 @@ impl Active {
         while start < self.next.len() && !self.contains(start) {
             start += 1;
         }
-        ActiveRange {
-            active: self,
-            cur: start,
-            end: end,
-        }
+        ActiveRange { active: self, cur: start, end: end }
     }
 }
 
 impl<'a> IntoIterator for &'a Active {
     type IntoIter = ActiveIter<'a>;
     type Item = usize;
-    fn into_iter(self) -> ActiveIter<'a> { self.iter() }
+    fn into_iter(self) -> ActiveIter<'a> {
+        self.iter()
+    }
 }
 
 /// An iterator over all elements in an active list.
@@ -181,29 +175,45 @@ pub trait RangeBound<T> {
 }
 
 impl<T> RangeBound<T> for RangeFull {
-    fn start(&self) -> Bound<&T> { Bound::Unbounded }
-    fn end(&self) -> Bound<&T> { Bound::Unbounded }
+    fn start(&self) -> Bound<&T> {
+        Bound::Unbounded
+    }
+    fn end(&self) -> Bound<&T> {
+        Bound::Unbounded
+    }
 }
 
 impl<T> RangeBound<T> for RangeFrom<T> {
-    fn start(&self) -> Bound<&T> { Bound::Included(&self.start) }
-    fn end(&self) -> Bound<&T> { Bound::Unbounded }
+    fn start(&self) -> Bound<&T> {
+        Bound::Included(&self.start)
+    }
+    fn end(&self) -> Bound<&T> {
+        Bound::Unbounded
+    }
 }
 
 impl<T> RangeBound<T> for RangeTo<T> {
-    fn start(&self) -> Bound<&T> { Bound::Unbounded }
-    fn end(&self) -> Bound<&T> { Bound::Excluded(&self.end) }
+    fn start(&self) -> Bound<&T> {
+        Bound::Unbounded
+    }
+    fn end(&self) -> Bound<&T> {
+        Bound::Excluded(&self.end)
+    }
 }
 
 impl<T> RangeBound<T> for Range<T> {
-    fn start(&self) -> Bound<&T> { Bound::Included(&self.start) }
-    fn end(&self) -> Bound<&T> { Bound::Excluded(&self.end) }
+    fn start(&self) -> Bound<&T> {
+        Bound::Included(&self.start)
+    }
+    fn end(&self) -> Bound<&T> {
+        Bound::Excluded(&self.end)
+    }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::ops::Range;
     use super::Active;
+    use std::ops::Range;
 
     fn items(active: &Active) -> Vec<usize> {
         active.iter().collect()

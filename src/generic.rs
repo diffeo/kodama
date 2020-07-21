@@ -240,16 +240,26 @@ fn ward<T: Float>(
 
     for x in state.active.range(..a) {
         method::ward(
-            dis[[x, a]], &mut dis[[x, b]], dist,
-            size_a, size_b, state.sizes[x]);
+            dis[[x, a]],
+            &mut dis[[x, b]],
+            dist,
+            size_a,
+            size_b,
+            state.sizes[x],
+        );
         if state.nearest[x] == a {
             state.nearest[x] = ab;
         }
     }
     for x in state.active.range(a..b).skip(1) {
         method::ward(
-            dis[[a, x]], &mut dis[[x, b]], dist,
-            size_a, size_b, state.sizes[x]);
+            dis[[a, x]],
+            &mut dis[[x, b]],
+            dist,
+            size_a,
+            size_b,
+            state.sizes[x],
+        );
         if &dis[[x, ab]] < state.queue.priority(x) {
             state.queue.set_priority(x, dis[[x, ab]]);
             state.nearest[x] = ab;
@@ -258,8 +268,13 @@ fn ward<T: Float>(
     let mut min = *state.queue.priority(b);
     for x in state.active.range(b..).skip(1) {
         method::ward(
-            dis[[a, x]], &mut dis[[b, x]], dist,
-            size_a, size_b, state.sizes[x]);
+            dis[[a, x]],
+            &mut dis[[b, x]],
+            dist,
+            size_a,
+            size_b,
+            state.sizes[x],
+        );
         if dis[[ab, x]] < min {
             state.queue.set_priority(b, dis[[ab, x]]);
             state.nearest[b] = x;
@@ -345,9 +360,9 @@ fn median<T: Float>(
 
 #[cfg(test)]
 mod tests {
-    use {Method, MethodChain, nnchain, primitive};
-    use test::DistinctMatrix;
     use super::generic;
+    use test::DistinctMatrix;
+    use {nnchain, primitive, Method, MethodChain};
 
     quickcheck! {
         fn prop_generic_single_primitive(mat: DistinctMatrix) -> bool {

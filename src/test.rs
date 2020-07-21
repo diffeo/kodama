@@ -30,10 +30,7 @@ impl DistinctMatrix {
         }
 
         let n = observations(mat.len());
-        DistinctMatrix {
-            matrix: mat,
-            len: n,
-        }
+        DistinctMatrix { matrix: mat, len: n }
     }
 
     /// Return a copy of the condensed pairwise dissimilarity matrix.
@@ -52,14 +49,14 @@ impl Arbitrary for DistinctMatrix {
         let size = g.gen_range(0, 30);
         let mut dis = vec![];
         for i in 0..size {
-            for _ in i+1..size {
+            for _ in i + 1..size {
                 dis.push(g.gen_range(-0.5, 0.5));
             }
         }
         DistinctMatrix::new(dis)
     }
 
-    fn shrink(&self) -> Box<dyn Iterator<Item=DistinctMatrix>> {
+    fn shrink(&self) -> Box<dyn Iterator<Item = DistinctMatrix>> {
         Box::new(self.matrix.shrink().map(DistinctMatrix::new))
     }
 }
@@ -89,9 +86,8 @@ fn make_distinct(xs: &mut Vec<f64>) {
         return;
     }
     // Get the first unique value by adding `1.0` to the max of `xs`.
-    let mut next = 1.0 + xs.iter().fold(xs[0], |a, &b| {
-        if a > b { a } else { b }
-    });
+    let mut next =
+        1.0 + xs.iter().fold(xs[0], |a, &b| if a > b { a } else { b });
     let mut seen = BTreeSet::new();
     for i in 0..xs.len() {
         let x = NonNanF64(xs[i]);
