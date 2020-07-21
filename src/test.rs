@@ -59,7 +59,7 @@ impl Arbitrary for DistinctMatrix {
         DistinctMatrix::new(dis)
     }
 
-    fn shrink(&self) -> Box<Iterator<Item=DistinctMatrix>> {
+    fn shrink(&self) -> Box<dyn Iterator<Item=DistinctMatrix>> {
         Box::new(self.matrix.shrink().map(DistinctMatrix::new))
     }
 }
