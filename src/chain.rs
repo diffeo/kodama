@@ -2,10 +2,10 @@ use std::mem;
 
 use num_traits::Float;
 
-use condensed::CondensedMatrix;
-use dendrogram::Dendrogram;
-use method;
-use {LinkageState, MethodChain};
+use crate::condensed::CondensedMatrix;
+use crate::dendrogram::Dendrogram;
+use crate::method;
+use crate::{LinkageState, MethodChain};
 
 /// Perform hierarchical clustering using the "nearest neighbor chain"
 /// algorithm as described in Müllner's paper.
@@ -118,7 +118,7 @@ pub fn nnchain_with<T: Float>(
 #[inline]
 fn single<T: Float>(
     state: &mut LinkageState<T>,
-    dis: &mut CondensedMatrix<T>,
+    dis: &mut CondensedMatrix<'_, T>,
     a: usize,
     b: usize,
 ) {
@@ -136,7 +136,7 @@ fn single<T: Float>(
 #[inline]
 fn complete<T: Float>(
     state: &mut LinkageState<T>,
-    dis: &mut CondensedMatrix<T>,
+    dis: &mut CondensedMatrix<'_, T>,
     a: usize,
     b: usize,
 ) {
@@ -154,7 +154,7 @@ fn complete<T: Float>(
 #[inline]
 fn average<T: Float>(
     state: &mut LinkageState<T>,
-    dis: &mut CondensedMatrix<T>,
+    dis: &mut CondensedMatrix<'_, T>,
     a: usize,
     b: usize,
 ) {
@@ -174,7 +174,7 @@ fn average<T: Float>(
 #[inline]
 fn weighted<T: Float>(
     state: &mut LinkageState<T>,
-    dis: &mut CondensedMatrix<T>,
+    dis: &mut CondensedMatrix<'_, T>,
     a: usize,
     b: usize,
 ) {
@@ -192,7 +192,7 @@ fn weighted<T: Float>(
 #[inline]
 fn ward<T: Float>(
     state: &mut LinkageState<T>,
-    dis: &mut CondensedMatrix<T>,
+    dis: &mut CondensedMatrix<'_, T>,
     a: usize,
     b: usize,
 ) {
@@ -234,8 +234,8 @@ fn ward<T: Float>(
 #[cfg(test)]
 mod tests {
     use super::nnchain;
-    use test::DistinctMatrix;
-    use {primitive, Method, MethodChain};
+    use crate::test::DistinctMatrix;
+    use crate::{primitive, Method, MethodChain};
 
     quickcheck! {
         fn prop_nnchain_single_primitive(mat: DistinctMatrix) -> bool {

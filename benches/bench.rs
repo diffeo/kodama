@@ -1,7 +1,7 @@
 #![feature(test)]
 
-extern crate byteorder;
-extern crate kodama;
+
+use kodama;
 #[macro_use]
 extern crate lazy_static;
 extern crate test;

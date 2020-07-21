@@ -1,9 +1,9 @@
 use num_traits::Float;
 
-use condensed::CondensedMatrix;
-use dendrogram::Dendrogram;
-use method;
-use {LinkageState, Method};
+use crate::condensed::CondensedMatrix;
+use crate::dendrogram::Dendrogram;
+use crate::method;
+use crate::{LinkageState, Method};
 
 /// Perform hierarchical clustering using the minimum spanning tree
 /// algorithm as described in Müllner's paper.
@@ -73,8 +73,8 @@ pub fn mst_with<T: Float>(
 #[cfg(test)]
 mod tests {
     use super::mst;
-    use test::DistinctMatrix;
-    use {generic, primitive, Method};
+    use crate::test::DistinctMatrix;
+    use crate::{generic, primitive, Method};
 
     quickcheck! {
         fn prop_mst_primitive(mat: DistinctMatrix) -> bool {

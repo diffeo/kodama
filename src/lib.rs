@@ -229,12 +229,11 @@ Obviously, this is not ideal and there is a lot of room for improvement!
 
 #![deny(missing_docs)]
 
-extern crate num_traits;
+
 #[cfg(test)]
 #[macro_use]
 extern crate quickcheck;
-#[cfg(test)]
-extern crate rand;
+
 
 use std::error;
 use std::fmt;
@@ -244,15 +243,15 @@ use std::str::FromStr;
 
 use num_traits::Float;
 
-pub use chain::{nnchain, nnchain_with};
-pub use dendrogram::{Dendrogram, Step};
-pub use generic::{generic, generic_with};
-pub use primitive::{primitive, primitive_with};
-pub use spanning::{mst, mst_with};
+pub use crate::chain::{nnchain, nnchain_with};
+pub use crate::dendrogram::{Dendrogram, Step};
+pub use crate::generic::{generic, generic_with};
+pub use crate::primitive::{primitive, primitive_with};
+pub use crate::spanning::{mst, mst_with};
 
-use active::Active;
-use queue::LinkageHeap;
-use union::LinkageUnionFind;
+use crate::active::Active;
+use crate::queue::LinkageHeap;
+use crate::union::LinkageUnionFind;
 
 mod active;
 mod chain;
@@ -281,7 +280,7 @@ pub enum Error {
 impl error::Error for Error {}
 
 impl fmt::Display for Error {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {
             Error::InvalidMethod(ref name) => {
                 write!(f, "unrecognized method name: '{}'", name)
