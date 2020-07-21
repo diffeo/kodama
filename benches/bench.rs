@@ -21,7 +21,6 @@ lazy_static! {
         }
         (dists, 200)
     };
-
     static ref MA_CONDENSED_DISTS_LARGE: (Vec<f64>, usize) = {
         const DIST_BYTES: &'static [u8] =
             include_bytes!("../data/locations/ma-bench-large.dist");
@@ -65,103 +64,196 @@ bench_linkage!(single_ma_large_mst, MA_CONDENSED_DISTS_LARGE, mst);
 
 // nnchain on small data
 bench_linkage!(
-    single_ma_small_nnchain, MA_CONDENSED_DISTS_SMALL,
-    MethodChain::Single, nnchain);
+    single_ma_small_nnchain,
+    MA_CONDENSED_DISTS_SMALL,
+    MethodChain::Single,
+    nnchain
+);
 bench_linkage!(
-    complete_ma_small_nnchain, MA_CONDENSED_DISTS_SMALL,
-    MethodChain::Complete, nnchain);
+    complete_ma_small_nnchain,
+    MA_CONDENSED_DISTS_SMALL,
+    MethodChain::Complete,
+    nnchain
+);
 bench_linkage!(
-    average_ma_small_nnchain, MA_CONDENSED_DISTS_SMALL,
-    MethodChain::Average, nnchain);
+    average_ma_small_nnchain,
+    MA_CONDENSED_DISTS_SMALL,
+    MethodChain::Average,
+    nnchain
+);
 bench_linkage!(
-    weighted_ma_small_nnchain, MA_CONDENSED_DISTS_SMALL,
-    MethodChain::Weighted, nnchain);
+    weighted_ma_small_nnchain,
+    MA_CONDENSED_DISTS_SMALL,
+    MethodChain::Weighted,
+    nnchain
+);
 bench_linkage!(
-    ward_ma_small_nnchain, MA_CONDENSED_DISTS_SMALL,
-    MethodChain::Ward, nnchain);
+    ward_ma_small_nnchain,
+    MA_CONDENSED_DISTS_SMALL,
+    MethodChain::Ward,
+    nnchain
+);
 
 // nnchain on large data
 bench_linkage!(
-    single_ma_large_nnchain, MA_CONDENSED_DISTS_LARGE,
-    MethodChain::Single, nnchain);
+    single_ma_large_nnchain,
+    MA_CONDENSED_DISTS_LARGE,
+    MethodChain::Single,
+    nnchain
+);
 bench_linkage!(
-    complete_ma_large_nnchain, MA_CONDENSED_DISTS_LARGE,
-    MethodChain::Complete, nnchain);
+    complete_ma_large_nnchain,
+    MA_CONDENSED_DISTS_LARGE,
+    MethodChain::Complete,
+    nnchain
+);
 bench_linkage!(
-    average_ma_large_nnchain, MA_CONDENSED_DISTS_LARGE,
-    MethodChain::Average, nnchain);
+    average_ma_large_nnchain,
+    MA_CONDENSED_DISTS_LARGE,
+    MethodChain::Average,
+    nnchain
+);
 bench_linkage!(
-    weighted_ma_large_nnchain, MA_CONDENSED_DISTS_LARGE,
-    MethodChain::Weighted, nnchain);
+    weighted_ma_large_nnchain,
+    MA_CONDENSED_DISTS_LARGE,
+    MethodChain::Weighted,
+    nnchain
+);
 bench_linkage!(
-    ward_ma_large_nnchain, MA_CONDENSED_DISTS_LARGE,
-    MethodChain::Ward, nnchain);
+    ward_ma_large_nnchain,
+    MA_CONDENSED_DISTS_LARGE,
+    MethodChain::Ward,
+    nnchain
+);
 
 // generic on small data
 bench_linkage!(
-    single_ma_small_generic, MA_CONDENSED_DISTS_SMALL,
-    Method::Single, generic);
+    single_ma_small_generic,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Single,
+    generic
+);
 bench_linkage!(
-    complete_ma_small_generic, MA_CONDENSED_DISTS_SMALL,
-    Method::Complete, generic);
+    complete_ma_small_generic,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Complete,
+    generic
+);
 bench_linkage!(
-    average_ma_small_generic, MA_CONDENSED_DISTS_SMALL,
-    Method::Average, generic);
+    average_ma_small_generic,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Average,
+    generic
+);
 bench_linkage!(
-    weighted_ma_small_generic, MA_CONDENSED_DISTS_SMALL,
-    Method::Weighted, generic);
+    weighted_ma_small_generic,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Weighted,
+    generic
+);
 bench_linkage!(
-    ward_ma_small_generic, MA_CONDENSED_DISTS_SMALL,
-    Method::Ward, generic);
+    ward_ma_small_generic,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Ward,
+    generic
+);
 bench_linkage!(
-    centroid_ma_small_generic, MA_CONDENSED_DISTS_SMALL,
-    Method::Centroid, generic);
+    centroid_ma_small_generic,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Centroid,
+    generic
+);
 bench_linkage!(
-    median_ma_small_generic, MA_CONDENSED_DISTS_SMALL,
-    Method::Median, generic);
+    median_ma_small_generic,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Median,
+    generic
+);
 
 // generic on large data
 bench_linkage!(
-    single_ma_large_generic, MA_CONDENSED_DISTS_LARGE,
-    Method::Single, generic);
+    single_ma_large_generic,
+    MA_CONDENSED_DISTS_LARGE,
+    Method::Single,
+    generic
+);
 bench_linkage!(
-    complete_ma_large_generic, MA_CONDENSED_DISTS_LARGE,
-    Method::Complete, generic);
+    complete_ma_large_generic,
+    MA_CONDENSED_DISTS_LARGE,
+    Method::Complete,
+    generic
+);
 bench_linkage!(
-    average_ma_large_generic, MA_CONDENSED_DISTS_LARGE,
-    Method::Average, generic);
+    average_ma_large_generic,
+    MA_CONDENSED_DISTS_LARGE,
+    Method::Average,
+    generic
+);
 bench_linkage!(
-    weighted_ma_large_generic, MA_CONDENSED_DISTS_LARGE,
-    Method::Weighted, generic);
+    weighted_ma_large_generic,
+    MA_CONDENSED_DISTS_LARGE,
+    Method::Weighted,
+    generic
+);
 bench_linkage!(
-    ward_ma_large_generic, MA_CONDENSED_DISTS_LARGE,
-    Method::Ward, generic);
+    ward_ma_large_generic,
+    MA_CONDENSED_DISTS_LARGE,
+    Method::Ward,
+    generic
+);
 bench_linkage!(
-    centroid_ma_large_generic, MA_CONDENSED_DISTS_LARGE,
-    Method::Centroid, generic);
+    centroid_ma_large_generic,
+    MA_CONDENSED_DISTS_LARGE,
+    Method::Centroid,
+    generic
+);
 bench_linkage!(
-    median_ma_large_generic, MA_CONDENSED_DISTS_LARGE,
-    Method::Median, generic);
+    median_ma_large_generic,
+    MA_CONDENSED_DISTS_LARGE,
+    Method::Median,
+    generic
+);
 
 // primitive on small data
 bench_linkage!(
-    single_ma_small_primitive, MA_CONDENSED_DISTS_SMALL,
-    Method::Single, primitive);
+    single_ma_small_primitive,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Single,
+    primitive
+);
 bench_linkage!(
-    complete_ma_small_primitive, MA_CONDENSED_DISTS_SMALL,
-    Method::Complete, primitive);
+    complete_ma_small_primitive,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Complete,
+    primitive
+);
 bench_linkage!(
-    average_ma_small_primitive, MA_CONDENSED_DISTS_SMALL,
-    Method::Average, primitive);
+    average_ma_small_primitive,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Average,
+    primitive
+);
 bench_linkage!(
-    weighted_ma_small_primitive, MA_CONDENSED_DISTS_SMALL,
-    Method::Weighted, primitive);
+    weighted_ma_small_primitive,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Weighted,
+    primitive
+);
 bench_linkage!(
-    ward_ma_small_primitive, MA_CONDENSED_DISTS_SMALL,
-    Method::Ward, primitive);
+    ward_ma_small_primitive,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Ward,
+    primitive
+);
 bench_linkage!(
-    centroid_ma_small_primitive, MA_CONDENSED_DISTS_SMALL,
-    Method::Centroid, primitive);
+    centroid_ma_small_primitive,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Centroid,
+    primitive
+);
 bench_linkage!(
-    median_ma_small_primitive, MA_CONDENSED_DISTS_SMALL,
-    Method::Median, primitive);
+    median_ma_small_primitive,
+    MA_CONDENSED_DISTS_SMALL,
+    Method::Median,
+    primitive
+);

@@ -244,10 +244,10 @@ use std::str::FromStr;
 
 use num_traits::Float;
 
+pub use chain::{nnchain, nnchain_with};
 pub use dendrogram::{Dendrogram, Step};
 pub use generic::{generic, generic_with};
 pub use primitive::{primitive, primitive_with};
-pub use chain::{nnchain, nnchain_with};
 pub use spanning::{mst, mst_with};
 
 use active::Active;
@@ -259,9 +259,9 @@ mod chain;
 mod condensed;
 mod dendrogram;
 mod generic;
+mod method;
 mod primitive;
 mod queue;
-mod method;
 mod spanning;
 #[cfg(test)]
 mod test;
@@ -437,7 +437,7 @@ impl Method {
     fn square<T: Float>(&self, condensed_matrix: &mut [T]) {
         if self.on_squares() {
             for x in condensed_matrix.iter_mut() {
-                * x = *x * *x;
+                *x = *x * *x;
             }
         }
     }
@@ -710,6 +710,10 @@ impl<T: Float> LinkageState<T> {
         self.sizes[cluster2] = self.sizes[cluster1] + self.sizes[cluster2];
         self.active.remove(cluster1);
         dend.push(Step::new(
-            cluster1, cluster2, dissimilarity, self.sizes[cluster2]));
+            cluster1,
+            cluster2,
+            dissimilarity,
+            self.sizes[cluster2],
+        ));
     }
 }

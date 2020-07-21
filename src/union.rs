@@ -23,7 +23,9 @@ pub struct LinkageUnionFind {
 }
 
 impl Default for LinkageUnionFind {
-    fn default() -> LinkageUnionFind { LinkageUnionFind::new() }
+    fn default() -> LinkageUnionFind {
+        LinkageUnionFind::new()
+    }
 }
 
 impl LinkageUnionFind {
@@ -36,10 +38,7 @@ impl LinkageUnionFind {
     /// observations.
     pub fn with_len(len: usize) -> LinkageUnionFind {
         let size = if len == 0 { 0 } else { 2 * len - 1 };
-        LinkageUnionFind {
-            parents: (0..size).collect(),
-            next_parent: len,
-        }
+        LinkageUnionFind { parents: (0..size).collect(), next_parent: len }
     }
 
     /// Clear this allocation and resize it as appropriate to support `len`
@@ -124,7 +123,9 @@ impl LinkageUnionFind {
                 // We choose door #1 because it likely indicates a bug, and
                 // we'd rather the bug fail loudly until we understand it
                 // enough that we can fix it some other way.
-                step1.dissimilarity.partial_cmp(&step2.dissimilarity)
+                step1
+                    .dissimilarity
+                    .partial_cmp(&step2.dissimilarity)
                     .expect("NaNs not allowed in dendrogram")
             });
         }
@@ -143,8 +144,8 @@ impl LinkageUnionFind {
 
 #[cfg(test)]
 mod tests {
-    use dendrogram::{Dendrogram, Step};
     use super::LinkageUnionFind;
+    use dendrogram::{Dendrogram, Step};
     use Method;
 
     #[test]
@@ -262,11 +263,14 @@ mod tests {
         let mut set = LinkageUnionFind::new();
         set.relabel(&mut den, Method::Single);
 
-        assert_eq!(den.steps(), &[
-            Step::new(1, 3, 0.01, 2),
-            Step::new(0, 4, 0.015, 2),
-            Step::new(2, 5, 0.02, 3),
-            Step::new(6, 7, 0.03, 5),
-        ]);
+        assert_eq!(
+            den.steps(),
+            &[
+                Step::new(1, 3, 0.01, 2),
+                Step::new(0, 4, 0.015, 2),
+                Step::new(2, 5, 0.02, 3),
+                Step::new(6, 7, 0.03, 5),
+            ]
+        );
     }
 }

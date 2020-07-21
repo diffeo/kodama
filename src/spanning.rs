@@ -41,7 +41,8 @@ pub fn mst_with<T: Float>(
     state.active.remove(cluster);
 
     for _ in 0..dis.observations() - 1 {
-        let mut min_obs = state.active
+        let mut min_obs = state
+            .active
             .iter()
             .next()
             .expect("at least one active observation");
@@ -71,9 +72,9 @@ pub fn mst_with<T: Float>(
 
 #[cfg(test)]
 mod tests {
-    use {Method, generic, primitive};
-    use test::DistinctMatrix;
     use super::mst;
+    use test::DistinctMatrix;
+    use {generic, primitive, Method};
 
     quickcheck! {
         fn prop_mst_primitive(mat: DistinctMatrix) -> bool {
