@@ -378,7 +378,7 @@ pub enum Method {
     /// let t1 = |A| * d(A, X)^2 + |B| * d(B, X)^2);
     /// let t2 = |A| * |B| * d(A, B)^2;
     /// let size = |A| + |B|;
-    /// sqrt(t1/size + t2/size^2)
+    /// sqrt(t1/size - t2/size^2)
     /// ```
     ///
     /// where `A` and `B` correspond to the clusters that merged to create
