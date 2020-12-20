@@ -375,8 +375,8 @@ pub enum Method {
     /// computed by
     ///
     /// ```text
-    /// let t1 = |A| * d(A, X) + |B| * d(B, X));
-    /// let t2 = |A| * |B| * d(A, B);
+    /// let t1 = |A| * d(A, X)^2 + |B| * d(B, X)^2);
+    /// let t2 = |A| * |B| * d(A, B)^2;
     /// let size = |A| + |B|;
     /// sqrt(t1/size + t2/size^2)
     /// ```
@@ -391,7 +391,7 @@ pub enum Method {
     /// computed by
     ///
     /// ```text
-    /// sqrt(d(A, X)/2 + d(B, X)/2 - d(A, B)/4)
+    /// sqrt(d(A, X)^2/2 + d(B, X)^2/2 - d(A, B)^2/4)
     /// ```
     ///
     /// where `A` and `B` correspond to the clusters that merged to create
