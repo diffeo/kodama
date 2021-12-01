@@ -1,4 +1,4 @@
-use num_traits::Float;
+use crate::float::Float;
 
 #[inline]
 pub fn single<T: Float>(a: T, b: &mut T) {
@@ -16,14 +16,14 @@ pub fn complete<T: Float>(a: T, b: &mut T) {
 
 #[inline]
 pub fn average<T: Float>(a: T, b: &mut T, size_a: usize, size_b: usize) {
-    let size_a = T::from(size_a).unwrap();
-    let size_b = T::from(size_b).unwrap();
+    let size_a = T::from_usize(size_a);
+    let size_b = T::from_usize(size_b);
     *b = (size_a * a + size_b * *b) / (size_a + size_b);
 }
 
 #[inline]
 pub fn weighted<T: Float>(a: T, b: &mut T) {
-    *b = T::from(0.5).unwrap() * (a + *b);
+    *b = T::from_float(0.5) * (a + *b);
 }
 
 #[inline]
@@ -35,9 +35,9 @@ pub fn ward<T: Float>(
     size_b: usize,
     size_x: usize,
 ) {
-    let size_a = T::from(size_a).unwrap();
-    let size_b = T::from(size_b).unwrap();
-    let size_x = T::from(size_x).unwrap();
+    let size_a = T::from_usize(size_a);
+    let size_b = T::from_usize(size_b);
+    let size_x = T::from_usize(size_x);
 
     let numerator = ((size_x + size_a) * a) + ((size_x + size_b) * *b)
         - (size_x * merged_dist);
@@ -53,8 +53,8 @@ pub fn centroid<T: Float>(
     size_a: usize,
     size_b: usize,
 ) {
-    let size_a = T::from(size_a).unwrap();
-    let size_b = T::from(size_b).unwrap();
+    let size_a = T::from_usize(size_a);
+    let size_b = T::from_usize(size_b);
     let size_ab = size_a + size_b;
 
     *b = (((size_a * a) + (size_b * *b)) / size_ab)
@@ -63,8 +63,8 @@ pub fn centroid<T: Float>(
 
 #[inline]
 pub fn median<T: Float>(a: T, b: &mut T, merged_dist: T) {
-    let half = T::from(0.5).unwrap();
-    let quarter = T::from(0.25).unwrap();
+    let half = T::from_float(0.5);
+    let quarter = T::from_float(0.25);
 
     *b = (half * (a + *b)) - (merged_dist * quarter);
 }

@@ -235,10 +235,9 @@ use std::io;
 use std::result;
 use std::str::FromStr;
 
-use num_traits::Float;
-
 pub use crate::chain::{nnchain, nnchain_with};
 pub use crate::dendrogram::{Dendrogram, Step};
+pub use crate::float::Float;
 pub use crate::generic::{generic, generic_with};
 pub use crate::primitive::{primitive, primitive_with};
 pub use crate::spanning::{mst, mst_with};
@@ -251,6 +250,7 @@ mod active;
 mod chain;
 mod condensed;
 mod dendrogram;
+mod float;
 mod generic;
 mod method;
 mod primitive;
