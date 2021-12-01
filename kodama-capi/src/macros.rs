@@ -23,7 +23,7 @@ macro_rules! ffi_fn {
                         "panic unwind caught, aborting: {:?}",
                         msg,
                     );
-                    unsafe { libc::abort() }
+                    std::process::abort()
                 }
             }
         }
