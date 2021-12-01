@@ -20,10 +20,6 @@ members = ["kodama-bin", "kodama-capi"]
 [lib]
 name = "kodama"
 
-[dependencies]
-# For writing generic floating point code.
-num-traits = "0.2.12"
-
 [dev-dependencies]
 # For reading benchmark data.
 byteorder = "1.4.3"

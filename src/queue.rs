@@ -1,4 +1,4 @@
-use num_traits::Float;
+use crate::float::Float;
 
 // BREADCRUMBS: Look into moving `nearest` into this heap structure. It seems
 // like it might be doing too much at once, but things might actually become
@@ -166,8 +166,9 @@ impl<T: Float> LinkageHeap<T> {
 
 #[cfg(test)]
 mod tests {
+    use crate::float::Float;
+
     use super::LinkageHeap;
-    use num_traits::Float;
 
     fn is_sorted_asc<T: Float>(xs: &[T]) -> bool {
         for win in xs.windows(2) {
