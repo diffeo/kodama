@@ -16,6 +16,8 @@ impl DistinctMatrix {
     /// numbers. If the given matrix has too many numbers, then it is truncated
     /// to an appropriate length such that it is a reflexive pairwise
     /// dissimilarity matrix.
+    ///
+    /// Also, any NaN values in the matrix are replaced with `0`.
     pub fn new(mut mat: Vec<f64>) -> DistinctMatrix {
         make_distinct(&mut mat);
 
@@ -27,6 +29,14 @@ impl DistinctMatrix {
                 should = (n * (n - 1)) / 2;
             }
             mat.truncate(should);
+
+            // Forcefully avoid NaN values. This is consistent with our public
+            // API precondition that NaN values aren't permitted.
+            for v in &mut mat {
+                if v.is_nan() {
+                    *v = 0.0;
+                }
+            }
         }
 
         let n = observations(mat.len());
@@ -45,12 +55,13 @@ impl DistinctMatrix {
 }
 
 impl Arbitrary for DistinctMatrix {
-    fn arbitrary<G: Gen>(g: &mut G) -> DistinctMatrix {
-        let size = g.gen_range(0, 30);
+    fn arbitrary(_g: &mut Gen) -> DistinctMatrix {
+        let mut rng = rand::thread_rng();
+        let size = rng.gen_range(0..30);
         let mut dis = vec![];
         for i in 0..size {
             for _ in i + 1..size {
-                dis.push(g.gen_range(-0.5, 0.5));
+                dis.push(rng.gen_range(-0.5..=0.5));
             }
         }
         DistinctMatrix::new(dis)

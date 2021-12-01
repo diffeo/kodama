@@ -247,6 +247,12 @@ mod tests {
 
     quickcheck::quickcheck! {
         fn prop_heap_invariant(xs: Vec<f64>) -> bool {
+            let mut xs = xs;
+            for x in &mut xs {
+                if x.is_nan() {
+                    *x = 0.0;
+                }
+            }
             let mut heap = new_heap(&xs);
             is_sorted_asc(&pop_all(&mut heap))
         }
@@ -254,6 +260,12 @@ mod tests {
 
     quickcheck::quickcheck! {
         fn prop_heapify_heap_invariant(xs: Vec<f64>) -> bool {
+            let mut xs = xs;
+            for x in &mut xs {
+                if x.is_nan() {
+                    *x = 0.0;
+                }
+            }
             let mut heap = heapify(&xs);
             is_sorted_asc(&pop_all(&mut heap))
         }
