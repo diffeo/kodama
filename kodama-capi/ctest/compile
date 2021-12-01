@@ -3,8 +3,8 @@
 set -ex
 
 cargo build --manifest-path ../Cargo.toml
-gcc -DDEBUG -std=c11 -Wall -I../include -L../target/debug -lkodama \
-  -o test test.c
+gcc -DDEBUG -std=c11 -Wall -I../include -L../../target/debug \
+  -o test test.c -lkodama
 
 # If compiling against a static executable built with musl on x86-64 Linux.
 # cargo build --manifest-path ../Cargo.toml --target x86_64-unknown-linux-musl
