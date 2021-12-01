@@ -19,4 +19,3 @@ crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
 kodama = { version = "0.2.3", path = ".." }
-libc = "0.2"

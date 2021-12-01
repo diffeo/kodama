@@ -1,10 +1,16 @@
 use std::slice;
 
 use kodama::{linkage, Method};
-use libc::{c_double, c_float, size_t};
 
 #[macro_use]
 mod macros;
+
+#[allow(non_camel_case_types)]
+pub type size_t = usize;
+#[allow(non_camel_case_types)]
+pub type c_float = f32;
+#[allow(non_camel_case_types)]
+pub type c_double = f64;
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
