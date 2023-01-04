@@ -30,7 +30,7 @@ Add this to your `Cargo.toml`:
 
 ```text
 [dependencies]
-kodama = "0.1"
+kodama = "0.3"
 ```
 
 and this to your crate root:
