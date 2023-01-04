@@ -40,15 +40,11 @@ jobs:
           rust: stable-x86_64-gnu
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+      uses: actions/checkout@v3
     - name: Install Rust
-      uses: actions-rs/toolchain@v1
+      uses: dtolnay/rust-toolchain@master
       with:
         toolchain: ${{ matrix.rust }}
-        override: true
-        profile: minimal
     - run: cargo build --verbose
     - run: cargo doc --verbose
     - run: cargo test --verbose
@@ -62,15 +58,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+      uses: actions/checkout@v3
     - name: Install Rust
-      uses: actions-rs/toolchain@v1
+      uses: dtolnay/rust-toolchain@master
       with:
         toolchain: stable
-        override: true
-        profile: minimal
         components: rustfmt
     - name: Check formatting (root)
       run: |
