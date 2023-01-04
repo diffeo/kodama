@@ -1,4 +1,5 @@
 [package]
+publish = false
 name = "kodama-bin"
 version = "0.1.2"  #:version
 authors = ["Diffeo <support@diffeo.com>"]
@@ -19,7 +20,7 @@ path = "src/locations.rs"
 
 [dependencies]
 # For agglomerative hierarchical clustering.
-kodama = { version = "0.2.2", path = ".." }
+kodama = { version = "*", path = ".." }
 # For reading/writing arrays.
 byteorder = "1.3.4"
 # For argv parsing.
