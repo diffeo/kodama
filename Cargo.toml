@@ -1,6 +1,6 @@
 [package]
 name = "kodama"
-version = "0.2.3"  #:version
+version = "0.3.0"  #:version
 authors = ["Diffeo <support@diffeo.com>"]
 description = """
 Agglomerative hierarchical clustering.
