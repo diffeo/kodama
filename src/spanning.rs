@@ -1,3 +1,5 @@
+use crate::Float;
+
 use crate::condensed::CondensedMatrix;
 use crate::dendrogram::Dendrogram;
 use crate::float::Float;

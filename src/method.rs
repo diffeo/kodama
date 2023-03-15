@@ -1,4 +1,4 @@
-use crate::float::Float;
+use crate::Float;
 
 #[inline]
 pub fn single<T: Float>(a: T, b: &mut T) {

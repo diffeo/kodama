@@ -242,6 +242,11 @@ pub use crate::generic::{generic, generic_with};
 pub use crate::primitive::{primitive, primitive_with};
 pub use crate::spanning::{mst, mst_with};
 
+#[cfg(not(feature = "float-trait"))]
+pub use crate::float::Float;
+#[cfg(feature = "float-trait")]
+pub use num_traits::Float;
+
 use crate::active::Active;
 use crate::queue::LinkageHeap;
 use crate::union::LinkageUnionFind;
@@ -250,6 +255,7 @@ mod active;
 mod chain;
 mod condensed;
 mod dendrogram;
+#[cfg(not(feature = "float-trait"))]
 mod float;
 mod generic;
 mod method;
