@@ -237,7 +237,6 @@ use std::str::FromStr;
 
 pub use crate::chain::{nnchain, nnchain_with};
 pub use crate::dendrogram::{Dendrogram, Step};
-pub use crate::float::Float;
 pub use crate::generic::{generic, generic_with};
 pub use crate::primitive::{primitive, primitive_with};
 pub use crate::spanning::{mst, mst_with};

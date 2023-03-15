@@ -166,10 +166,8 @@ impl<T: Float> LinkageHeap<T> {
 
 #[cfg(test)]
 mod tests {
-    use crate::float::Float;
-
-    use super::LinkageHeap;
     use crate::Float;
+    use super::LinkageHeap;
 
     fn is_sorted_asc<T: Float>(xs: &[T]) -> bool {
         for win in xs.windows(2) {

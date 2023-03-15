@@ -1,9 +1,7 @@
 use crate::Float;
-
 use crate::active::Active;
 use crate::condensed::CondensedMatrix;
 use crate::dendrogram::Dendrogram;
-use crate::float::Float;
 use crate::method;
 use crate::{LinkageState, Method};
 
