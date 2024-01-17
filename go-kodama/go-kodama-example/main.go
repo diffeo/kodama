@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-
-	kodama "github.com/diffeo/kodama/go-kodama"
+	// currently this example cannot be compiled due to a missing library
+	// kodama "github.com/diffeo/kodama/go-kodama"
 )
 
 func main() {
@@ -29,8 +29,10 @@ func main() {
 		8.333311197617531,  /* northbridge, westborough */
 		5.308336458020405,  /* southborough, westborough */
 	}
-	dend := kodama.Linkage64(maCondensedMatrix64, maObservations, kodama.MethodAverage)
+	fmt.Printf("%#v\n %v", maCondensedMatrix64, maObservations);
+	/*
+ 	dend := kodama.Linkage64(maCondensedMatrix64, maObservations, kodama.MethodAverage)
 	for _, step := range dend.Steps() {
 		fmt.Printf("%#v\n", step)
-	}
+	}*/
 }
