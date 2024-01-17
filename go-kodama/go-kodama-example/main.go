@@ -29,6 +29,7 @@ func main() {
 		8.333311197617531,  /* northbridge, westborough */
 		5.308336458020405,  /* southborough, westborough */
 	}
+	fmt.Printf("%#v\n %v", maCondensedMatrix64, maObservations);
 	/*
  	dend := kodama.Linkage64(maCondensedMatrix64, maObservations, kodama.MethodAverage)
 	for _, step := range dend.Steps() {
