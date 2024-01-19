@@ -1,8 +1,8 @@
 use std::mem;
 
+use crate::Float;
 use crate::condensed::CondensedMatrix;
 use crate::dendrogram::Dendrogram;
-use crate::float::Float;
 use crate::method;
 use crate::{LinkageState, MethodChain};
 

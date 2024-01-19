@@ -20,6 +20,11 @@ members = ["kodama-bin", "kodama-capi"]
 [lib]
 name = "kodama"
 
+[dependencies.num-traits]
+# For writing generic floating point code.
+version = "0.2.12"
+optional = true
+
 [dev-dependencies]
 # For reading benchmark data.
 byteorder = "1.4.3"
@@ -29,6 +34,10 @@ rand = "0.8.4"
 lazy_static = "1.4.0"
 # For property based testing.
 quickcheck = { version = "1.0.3", default-features = false }
+
+[features]
+default = []
+float-trait = ["num-traits"]
 
 [profile.release]
 debug = true

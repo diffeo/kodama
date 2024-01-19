@@ -1,7 +1,7 @@
 use std::mem;
 use std::ops;
 
-use crate::float::Float;
+use crate::Float;
 
 /// A step-wise dendrogram that represents a hierarchical clustering as a
 /// binary tree.
