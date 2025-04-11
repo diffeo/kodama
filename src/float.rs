@@ -6,6 +6,54 @@ mod private {
     pub trait Sealed {}
     impl Sealed for f32 {}
     impl Sealed for f64 {}
+
+    /// The `SealedCast` trait stops crates other than kodama from implementing 
+    /// any traits that use it.
+    pub trait SealedCast {}
+    impl SealedCast for f32 {}
+    impl SealedCast for f64 {}
+    impl SealedCast for usize {}
+}
+
+/// A trait for numbers that can be converted to a float primitive.
+/// 
+/// This is a simplified copy of the homonymous trait from the `num-traits`,
+/// copied here to offer just the features required by `kodama`.
+pub trait ToPrimitive:
+    self::private::SealedCast
+{
+    fn to_f32(&self) -> Option<f32>;
+    fn to_f64(&self) -> Option<f64>;
+}
+
+impl ToPrimitive for f32 {
+    fn to_f32(&self) -> Option<f32> {
+        Some(*self)
+    }
+
+    fn to_f64(&self) -> Option<f64> {
+        Some(*self as f64)
+    }
+}
+
+impl ToPrimitive for f64 {
+    fn to_f32(&self) -> Option<f32> {
+        Some(*self as f32)
+    }
+
+    fn to_f64(&self) -> Option<f64> {
+        Some(*self)
+    }
+}
+
+impl ToPrimitive for usize {
+    fn to_f32(&self) -> Option<f32> {
+        Some(*self as f32)
+    }
+
+    fn to_f64(&self) -> Option<f64> {
+        Some(*self as f64)
+    }
 }
 
 /// A trait for writing generic code over floating point numbers.
@@ -26,13 +74,8 @@ pub trait Float:
     + Div<Self, Output = Self>
     + Mul<Self, Output = Self>
 {
-    /// Converts a `usize` to a float.
-    fn from_usize(v: usize) -> Self;
     /// Converts any floating type to this one.
-    fn from_float<F: Float>(v: F) -> Self;
-    /// Converts this floating type to a `f64`.
-    fn to_f64(self) -> f64;
-
+    fn from<T: ToPrimitive>(v: T) -> Option<Self>;
     /// Returns the representation of "infinity" for this float type.
     fn infinity() -> Self;
     /// Returns the maximum value for this float type.
@@ -44,16 +87,8 @@ pub trait Float:
 }
 
 impl Float for f32 {
-    fn from_usize(v: usize) -> f32 {
-        v as f32
-    }
-
-    fn from_float<F: Float>(v: F) -> f32 {
-        v.to_f64() as f32
-    }
-
-    fn to_f64(self) -> f64 {
-        self as f64
+    fn from<T: ToPrimitive>(v: T) -> Option<f32> {
+        v.to_f32()
     }
 
     fn infinity() -> f32 {
@@ -74,16 +109,8 @@ impl Float for f32 {
 }
 
 impl Float for f64 {
-    fn from_usize(v: usize) -> f64 {
-        v as f64
-    }
-
-    fn from_float<F: Float>(v: F) -> f64 {
+    fn from<T: ToPrimitive>(v: T) -> Option<f64> {
         v.to_f64()
-    }
-
-    fn to_f64(self) -> f64 {
-        self
     }
 
     fn infinity() -> f64 {
